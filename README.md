@@ -13,14 +13,13 @@ app_file: app.py
 
 > Chinese-LangChain：中文langchain项目，基于ChatGLM-6b+langchain实现本地化知识库检索与智能答案生成
 
-https://github.com/yanqiangmiffy/Chinese-LangChain
+https://github.com/rui23/LLM-Project.git
 
-俗称：小必应，Q.Talk，强聊，QiangTalk
 
 ## 🔥 效果演示
 
-![](https://github.com/yanqiangmiffy/Chinese-LangChain/blob/master/images/web_demos/v1.png)
-![](https://github.com/yanqiangmiffy/Chinese-LangChain/blob/master/images/web_demos/v3.png)
+![](https://github.com/rui23/LLM-Project/blob/main/images/web_demos/v1.png?raw=true)
+![](https://github.com/rui23/LLM-Project/blob/main/images/web_demos/v3.png?raw=true)
 
 ## 🚋 使用教程
 
@@ -33,20 +32,9 @@ https://github.com/yanqiangmiffy/Chinese-LangChain
 - 显存：12g，实际运行9g够了
 - 运行内存：32g
 
-### 运行环境
+### 安装依赖
 
-```text
-langchain
-gradio
-transformers
-sentence_transformers
-faiss-cpu
-unstructured
-duckduckgo_search
-mdtex2html
-chardet
-cchardet
-```
+pip install -r requirements.txt
 
 ### 启动Gradio
 
@@ -55,7 +43,7 @@ python main.py
 ```
 
 ## 🚀 特性
-- 🚀 2023/05/19 [yanlijun573](https://github.com/yanlijun573)提供[streamlit](https://github.com/yanqiangmiffy/Chinese-LangChain/tree/streamlit)分支
+- 🚀 2023/05/19 [yanlijun573](https://github.com/yanlijun573)
 - 🚀 2023/04/22 支持模型多机多卡推理
 - 🔭 2023/04/20 支持模型问答与检索问答模式切换
 - 💻 2023/04/20 感谢HF官方提供免费算力，添加HuggingFace
@@ -101,19 +89,7 @@ python main.py
 * [ ] 显示当前对话策略
 * [ ] 构建一个垂直业务场景知识库，非通用性
 
-## 交流
 
-欢迎多提建议、Bad cases，目前尚不完善，欢迎进群及时交流，也欢迎大家多提PR</br>
-
-<figure class="third">
-  <img src="https://raw.githubusercontent.com/yanqiangmiffy/Chinese-LangChain/master/images/ch.jpg" width="180px">
-  <img src="https://raw.githubusercontent.com/yanqiangmiffy/Chinese-LangChain/master/images/chatgroup.jpg" width="180px" height="270px">
-
-</figure>
-
-合作交流可以联系：
-
-<img src="https://raw.githubusercontent.com/yanqiangmiffy/Chinese-LangChain/master/images/personal.jpg" width="180px">
 
 ## ❤️引用
 
@@ -121,9 +97,3 @@ python main.py
 - knowledge问答参考：https://github.com/imClumsyPanda/langchain-ChatGLM
 - LLM模型：https://github.com/THUDM/ChatGLM-6B
 - CSS：https://huggingface.co/spaces/JohnSmith9982/ChuanhuChatGPT
-
-
-
-## ⭐️ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=yanqiangmiffy/Chinese-LangChain&type=Date)](https://star-history.com/#yanqiangmiffy/Chinese-LangChain&Date)
