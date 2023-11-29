@@ -17,7 +17,7 @@ class LangChainCFG:
         '初始化': './cache',
     }  # 可以替换成自己的知识库，如果没有需要设置为None
     # kg_vector_stores=None
-    patterns = ['模型问答', '知识库问答']  #
+    patterns = ['不使用知识库', '知识库问答']  #
 
 
 config = LangChainCFG()
@@ -75,7 +75,7 @@ def predict(input,
     else:
         web_content = ''
     search_text = ''
-    if use_pattern == '模型问答':
+    if use_pattern == '不使用知识库':
         result = application.get_llm_answer(query=input, web_content=web_content)
         history.append((input, result))
         search_text += web_content
@@ -138,11 +138,11 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                                )
             use_pattern = gr.Radio(
                 [
-                    '模型问答',
+                    '不使用知识库',
                     '知识库问答',
                 ],
                 label="模式",
-                value='模型问答',
+                value='不使用知识库',
                 interactive=True)
 
             kg_name = gr.Radio(list(config.kg_vector_stores.keys()),

@@ -8,5 +8,5 @@ print(embeddings)
 
 vector_store = FAISS.load_local("cache/financial_research_reports", embeddings)
 print(vector_store)
-res = vector_store.similarity_search_with_score('老窖')
+res = vector_store.similarity_search_with_score('交叉学科')
 print(res)

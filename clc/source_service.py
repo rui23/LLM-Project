@@ -1,22 +1,16 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 _*-
-"""
-@author:quincy qiang
-@license: Apache Licence
-@file: search.py
-@time: 2023/04/17
-@contact: yanqiangmiffy@gamil.com
-@software: PyCharm
-@description: coding..
-"""
+'''
+文档检索服务
+'''
 
 import os
+
 
 from duckduckgo_search import ddg
 from langchain.document_loaders import UnstructuredFileLoader
 from langchain.embeddings.huggingface import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
-
 
 class SourceService(object):
     def __init__(self, config):
@@ -74,13 +68,13 @@ class SourceService(object):
 #     config = LangChainCFG()
 #     source_service = SourceService(config)
 #     source_service.init_source_vector()
-#     search_result = source_service.vector_store.similarity_search_with_score('科比')
+#     search_result = source_service.vector_store.similarity_search_with_score('交叉学科')
 #     print(search_result)
 #
-#     source_service.add_document('/home/searchgpt/yq/Knowledge-ChatGLM/docs/added/科比.txt')
-#     search_result = source_service.vector_store.similarity_search_with_score('科比')
+#     source_service.add_document('/home/searchgpt/yq/Knowledge-ChatGLM/docs/港科大.txt')
+#     search_result = source_service.vector_store.similarity_search_with_score('交叉学科')
 #     print(search_result)
 #
 #     vector_store=source_service.load_vector_store()
-#     search_result = source_service.vector_store.similarity_search_with_score('科比')
+#     search_result = source_service.vector_store.similarity_search_with_score('交叉学科')
 #     print(search_result)

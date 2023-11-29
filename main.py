@@ -15,10 +15,9 @@ class LangChainCFG:
     kg_vector_stores = {
         '中文维基百科': './cache/zh_wikipedia',
         '大规模金融研报': './cache/financial_research_reports',
-        '初始化': './cache',
     }  # 可以替换成自己的知识库，如果没有需要设置为None
     # kg_vector_stores=None
-    patterns = ['模型问答', '知识库问答']  #
+    patterns = ['不使用知识库', '知识库问答']  #
     n_gpus=1
 
 
@@ -78,7 +77,7 @@ def predict(input,
     else:
         web_content = ''
     search_text = ''
-    if use_pattern == '模型问答':
+    if use_pattern == '不使用知识库':
         result = application.get_llm_answer(query=input, web_content=web_content)
         history.append((input, result))
         search_text += web_content
@@ -107,7 +106,7 @@ def predict(input,
 with open("assets/custom.css", "r", encoding="utf-8") as f:
     customCSS = f.read()
 with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
-    gr.Markdown("""<h1><center>Chinese-LangChain</center></h1>
+    gr.Markdown("""<h1><center> 本地知识库问答 (Group_9)</center></h1>
         <center><font size=3>
         </center></font>
         """)
@@ -128,53 +127,53 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
                 label="large language model",
                 value="ChatGLM-6B-int4")
 
-            top_k = gr.Slider(1,
-                              20,
-                              value=4,
-                              step=1,
-                              label="检索top-k文档",
-                              interactive=True)
-
             use_web = gr.Radio(["使用", "不使用"], label="web search",
                                info="是否使用网络搜索，使用时确保网络通常",
                                value="不使用"
                                )
             use_pattern = gr.Radio(
                 [
-                    '模型问答',
+                    '不使用知识库',
                     '知识库问答',
                 ],
                 label="模式",
-                value='模型问答',
+                value='不使用知识库',
                 interactive=True)
 
             kg_name = gr.Radio(list(config.kg_vector_stores.keys()),
-                               label="知识库",
+                               label="常用知识库",
                                value=None,
-                               info="使用知识库问答，请加载知识库",
+                               info="若需要使用以下知识库问答，请加载知识库",
                                interactive=True)
             set_kg_btn = gr.Button("加载知识库")
 
-            file = gr.File(label="将文件上传到知识库库，内容要尽量匹配",
-                           visible=True,
-                           file_types=['.txt', '.md', '.docx', '.pdf']
-                           )
+            file = gr.File(label="将本地文件上传到知识库，内容要尽量匹配。支持的文件类型.txt, .md, .docx, .pdf",
+                            visible=True,
+                            file_types=['.txt', '.md', '.docx', '.pdf']
+                            )
 
         with gr.Column(scale=4):
             with gr.Row():
-                chatbot = gr.Chatbot(label='Chinese-LangChain').style(height=400)
+                chatbot = gr.Chatbot(label='Chinese-LangChain').style(height=500)
             with gr.Row():
-                message = gr.Textbox(label='请输入问题')
+                message = gr.Textbox(label='请输入问题', spaceholder='请输入问题')
             with gr.Row():
                 clear_history = gr.Button("🧹 清除历史对话")
                 send = gr.Button("🚀 发送")
             with gr.Row():
                 gr.Markdown("""提醒：<br>
-                                        [Chinese-LangChain](https://github.com/yanqiangmiffy/Chinese-LangChain) <br>
-                                        有任何使用问题[Github Issue区](https://github.com/yanqiangmiffy/Chinese-LangChain)进行反馈. <br>
+                                        有任何使用问题[Github Issue区](https://github.com/rui23/LLM-Project)进行反馈. <br>
                                         """)
         with gr.Column(scale=2):
-            search = gr.Textbox(label='搜索结果')
+            top_k = gr.Slider(1,
+                            20,
+                            value=2,
+                            step=1,
+                            label="检索top-k文档",
+                            interactive=True)
+
+            search = gr.Textbox(label='搜索结果').style(height=800)
+       
 
         # ============= 触发动作=============
         file.upload(upload_file,

@@ -1,14 +1,5 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 _*-
-"""
-@author:quincy qiang
-@license: Apache Licence
-@file: generate.py
-@time: 2023/04/17
-@contact: yanqiangmiffy@gamil.com
-@software: PyCharm
-@description: coding..
-"""
 
 import os
 from typing import Dict, Union, Optional
@@ -20,7 +11,7 @@ from langchain.llms.utils import enforce_stop_tokens
 from transformers import AutoModel, AutoTokenizer
 
 
-class ChatGLMService(LLM):
+class ChatGLMService(LLM): # 继承于langchain.llms.base
     max_token: int = 10000
     temperature: float = 0.1
     top_p = 0.9
@@ -50,6 +41,7 @@ class ChatGLMService(LLM):
         self.history = self.history + [[None, response]]
         return response
 
+    # 加载预训练的模型和对应的分词器
     def load_model(self,
                    model_name_or_path: str = "THUDM/chatglm-6b"):
         self.tokenizer = AutoTokenizer.from_pretrained(
@@ -59,6 +51,7 @@ class ChatGLMService(LLM):
         self.model = AutoModel.from_pretrained(model_name_or_path, trust_remote_code=True).half().cuda()
         self.model = self.model.eval()
 
+    # 将transformer模型的各层分布到多个GPU上进行并行处理
     def auto_configure_device_map(self, num_gpus: int) -> Dict[str, int]:
         # transformer.word_embeddings 占用1层
         # transformer.final_layernorm 和 lm_head 占用1层

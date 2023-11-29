@@ -1,14 +1,6 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 _*-
-"""
-@author:quincy qiang
-@license: Apache Licence
-@file: model.py
-@time: 2023/04/17
-@contact: yanqiangmiffy@gamil.com
-@software: PyCharm
-@description: coding..
-"""
+
 from langchain.chains import RetrievalQA
 from langchain.prompts.prompt import PromptTemplate
 
@@ -89,10 +81,10 @@ class LangChainApplication(object):
 if __name__ == '__main__':
     config = LangChainCFG()
     application = LangChainApplication(config)
-    # result = application.get_knowledge_based_answer('马保国是谁')
+    # result = application.get_knowledge_based_answer('香港科技大学成立背景是什么')
     # print(result)
-    # application.source_service.add_document('/home/searchgpt/yq/Knowledge-ChatGLM/docs/added/马保国.txt')
-    # result = application.get_knowledge_based_answer('马保国是谁')
+    # application.source_service.add_document('/home/searchgpt/yq/Knowledge-ChatGLM/docs/港科广.txt')
+    # result = application.get_knowledge_based_answer('香港科技大学成立背景是什么')
     # print(result)
-    result = application.get_llm_answer('马保国是谁')
+    result = application.get_llm_answer('香港科技大学成立背景是什么')
     print(result)

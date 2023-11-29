@@ -43,7 +43,7 @@ ol:not(.options), ul:not(.options) {
     background-color: rgba(255, 255, 255, 0.08) !important;
 }
 [data-testid = "user"] {
-    background-color: #95EC69 !important;
+    background-color: #ecc269 !important;
 }
 
 /* Dark mode */
@@ -55,13 +55,14 @@ ol:not(.options), ul:not(.options) {
     background-color: #2C2C2C !important;
 }
 .dark [data-testid = "user"] {
-    background-color: #26B561 !important;
+    background-color: #ecc269 !important;
 }
 
 #chuanhu_chatbot {
     height: 100%;
     min-height: 400px;
 }
+
 
 [class *= "message"] {
     border-radius: var(--radius-xl) !important;
