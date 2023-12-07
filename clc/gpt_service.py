@@ -41,7 +41,7 @@ class ChatGLMService(LLM): # 继承于langchain.llms.base
         self.history = self.history + [[None, response]]
         return response
 
-    # 加载预训练的模型和对应的分词器
+    # 加载预训练的模型和对应的分词器,这里要改成自己的模型
     def load_model(self,
                    model_name_or_path: str = "THUDM/chatglm-6b"):
         self.tokenizer = AutoTokenizer.from_pretrained(

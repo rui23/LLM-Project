@@ -102,7 +102,7 @@ def predict(input,
         search_text += web_content
         return '', history, history, search_text
 
-
+os.environ["GRADIO_TEMP_DIR"] = "/home/wangrui/LLM/Chinese-LangChain/docs"
 with open("assets/custom.css", "r", encoding="utf-8") as f:
     customCSS = f.read()
 with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
