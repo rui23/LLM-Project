@@ -8,7 +8,7 @@ from clc.langchain_application import LangChainApplication
 
 # 修改成自己的配置！！！
 class LangChainCFG:
-    llm_model_name = 'THUDM/chatglm-6b-int4-qe'  # 本地模型文件 or huggingface远程仓库
+    llm_model_name = 'THUDM/chatglm-6b'  # 本地模型文件 or huggingface远程仓库
     embedding_model_name = 'GanymedeNil/text2vec-large-chinese'  # 检索模型文件 or huggingface远程仓库
     vector_store_path = './cache'
     docs_path = './docs'
@@ -124,7 +124,7 @@ with gr.Blocks(css=customCSS, theme=small_and_beautiful_theme) as demo:
 
                 large_language_model = gr.Dropdown(
                     [
-                        "ChatGLM-6B-int4",
+                        "ChatGLM-6B",
                     ],
                     label="large language model",
                     value="ChatGLM-6B-int4")
@@ -224,6 +224,7 @@ demo.queue(concurrency_count=2).launch(
     server_name='0.0.0.0',
     server_port=8888,
     share=False,
+    # share=True,
     show_error=True,
     debug=True,
     enable_queue=True,
